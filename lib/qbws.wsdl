@@ -1,3 +1,16 @@
+<!--
+* This file is part of quickbooks-js
+* https://github.com/RappidDevelopment/quickbooks-js
+*
+* Based on qbws: https://github.com/johnballantyne/qbws
+*
+* (c) 2015 johnballantyne
+* (c) 2016 Rappid Development LLC
+*
+* For the full copyright and license information, please view the LICENSE
+* file that was distributed with this source code.
+*
+-->
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://developer.intuit.com/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://developer.intuit.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
