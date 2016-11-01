@@ -1,11 +1,11 @@
 {
-  "name": "qbws",
-  "version": "0.2.1",
-  "author": "John Ballantyne <johnballantyne+npmjs@gmail.com>",
-  "description": "a web server for QuickBooks Web Connector integration",
+  "name": "quickbooks-js",
+  "version": "0.1.0",
+  "author": "Rappid Development LLC",
+  "description": "A SOAP service implemented in Node.js that communicates with QuickBook's Web Connector",
   "repository": {
     "type": "git",
-    "url": "https://github.com/johnballantyne/qbws"
+    "url": "https://github.com/RappidDevelopment/quickbooks-js"
   },
   "keywords": [
     "qbwc",
