@@ -1,0 +1,135 @@
+{
+  "name": "qbws",
+  "version": "0.2.1",
+  "author": "John Ballantyne <johnballantyne+npmjs@gmail.com>",
+  "description": "a web server for QuickBooks Web Connector integration",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnballantyne/qbws"
+  },
+  "keywords": [
+    "qbwc",
+    "QuickBooks",
+    "QuickBooks Web Connector"
+  ],
+  "dependencies": {
+    "soap": "0.9.1",
+    "chalk": "1.1.1",
+    "xmlbuilder": "2.6.4",
+    "node-uuid": "1.4.3"
+  },
+  "devDependencies": {
+    "jshint": "2.1.x",
+    "jsdoc-to-markdown": "1.2.0"
+  },
+  "scripts": {
+    "jshint": "jshint index.js test/client.js",
+    "test": "npm run-script jshint",
+    "docs": "jsdoc2md -t jsdoc2md/qbws-api.hbs lib/qbws.js > docs/qbws-api.md"
+  },
+  "jshintConfig": {
+    "bitwise": true,
+    "curly": true,
+    "eqeqeq": true,
+    "forin": true,
+    "freeze": true,
+    "futurehostile": true,
+    "latedef": "nofunc",
+    "noarg": true,
+    "nocomma": true,
+    "nonbsp": true,
+    "nonew": true,
+    "shadow": "outer",
+    "singleGroups": true,
+    "undef": true,
+    "unused": true,
+    "plusplus": true,
+    "node": true
+  },
+  "jscsConfig": {
+    "requireCurlyBraces": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "try",
+        "catch"
+    ],
+    "requireSpaceAfterKeywords": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "switch",
+        "case",
+        "return",
+        "try",
+        "catch",
+        "typeof"
+    ],
+    "requireSpaceBeforeBlockStatements": true,
+    "requireParenthesesAroundIIFE": true,
+    "requireSpacesInConditionalExpression": true,
+    "disallowSpacesInNamedFunctionExpression": {
+        "beforeOpeningRoundBrace": true
+    },
+    "disallowSpacesInFunctionDeclaration": {
+        "beforeOpeningRoundBrace": true
+    },
+    "requireSpaceBetweenArguments": true,
+    "requireMultipleVarDecl": { "allExcept": ["require"] },
+    "requireVarDeclFirst": true,
+    "requireBlocksOnNewline": true,
+    "disallowEmptyBlocks": true,
+    "disallowSpacesInsideArrayBrackets": true,
+    "disallowSpacesInsideParentheses": true,
+    "disallowDanglingUnderscores": true,
+    "requireCommaBeforeLineBreak": true,
+    "disallowSpaceAfterPrefixUnaryOperators": true,
+    "disallowSpaceBeforePostfixUnaryOperators": true,
+    "disallowSpaceBeforeBinaryOperators": [
+        ","
+    ],
+    "requireSpacesInForStatement": true,
+    "requireSpacesInAnonymousFunctionExpression": {
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
+    },
+    "requireSpaceBeforeBinaryOperators": true,
+    "requireSpaceAfterBinaryOperators": true,
+    "disallowKeywords": [
+        "with",
+        "continue"
+    ],
+    "validateIndentation": 4,
+    "disallowMixedSpacesAndTabs": true,
+    "disallowTrailingWhitespace": true,
+    "disallowTrailingComma": true,
+    "disallowKeywordsOnNewLine": [
+        "else"
+    ],
+    "requireLineFeedAtFileEnd": true,
+    "requireCapitalizedConstructors": true,
+    "requireDotNotation": true,
+    "disallowNewlineBeforeBlockStatements": true,
+    "disallowMultipleLineStrings": true,
+    "requireSpaceBeforeObjectValues": true,
+    "disallowQuotedKeysInObjects": true,
+    "disallowSpaceAfterObjectKeys": true,
+    "maximumLineLength": 180,
+    "requireCamelCaseOrUpperCaseIdentifiers": true,
+    "requireCapitalizedComments": false,
+    "requireSpaceAfterLineComment": true,
+    "requireSpacesInFunction": {
+        "beforeOpeningCurlyBrace": true
+    },
+    "validateLineBreaks": "LF",
+    "validateQuoteMarks": "'"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.12.7"
+  }
+}
