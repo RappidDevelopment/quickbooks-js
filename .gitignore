@@ -14,3 +14,12 @@ results
 
 npm-debug.log
 node_modules
+
+# Orig files from merges
+*.orig
+
+# ENV Variables
+.env
+
+# WebStorm IDE
+.idea
