@@ -1,6 +1,6 @@
 {
   "name": "quickbooks-js",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Rappid Development LLC",
   "description": "A SOAP service implemented in Node.js that communicates with QuickBook's Web Connector",
   "repository": {
