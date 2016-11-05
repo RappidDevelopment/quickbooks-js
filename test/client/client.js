@@ -11,21 +11,49 @@
  * file that was distributed with this source code.
  */
 
+// Private
 var soap = require('soap');
-
 var url = 'http://localhost:8000/wsdl?wsdl';
 
-soap.createClient(url, function(err, client) {
-    if (err) {
-        console.log('Error creating SOAP client');
-        console.log('Error!');
-    }
+// Public
+module.exports = Client;
 
-    client.serverVersion({}, function(err, result) {
-        if (err) {
-            console.log('Error calling serverVersion()');
-            console.log(err);
-        }
-        console.log(result);
+/**
+ * Creates a new SOAP Client instance.
+ * This acts as a mock quickbooks web connector.
+ * @constructor
+ */
+function Client() {
+    this.client = null;
+}
+
+/**
+ * This creates the new SOAP client.
+ * @param callback(err)
+ */
+Client.prototype.createClient = function(callback) {
+    var that = this;
+    soap.createClient(url, function(err, client) {
+        if (err) return callback(err);
+        that.client = client;
+        return callback(null);
     });
-});
+};
+
+/**
+ * Makes the call to the `serverVersion`
+ * endpoint required by QBWC
+ *
+ * @param callback(err, result)
+ */
+Client.prototype.serverVersion = function(callback) {
+    this.client.serverVersion({}, function(err, result) {
+        if (err) {
+            console.log(err);
+            return callback(err);
+        } else {
+            console.log(result);
+            return callback(null, result);
+        }
+    })
+};
