@@ -31,4 +31,12 @@ describe('Soap Client', function() {
             done();
         });
     });
+
+    it('should run server version method', function(done) {
+        soapClient.serverVersion(function(err, result) {
+            if (err) { done(err); }
+            assert.equal(result.serverVersionResult.string, "0.2.1");
+            done();
+        });
+    });
 });
