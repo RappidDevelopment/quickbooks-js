@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/RappidDevelopment/quickbooks-js"
   },
+  "bugs": {
+    "url": "https://github.com/RappidDevelopment/quickbooks-js/issues"
+  },
   "scripts": {
     "test": "mocha"
   },
