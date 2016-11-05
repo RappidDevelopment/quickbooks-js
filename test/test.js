@@ -15,4 +15,20 @@ var chai = require('chai');
 var assert = chai.assert;
 var expect = chai.expect;
 
+var Client = require('./client/client');
+var Server = require('./server/server');
+var soapClient = new Client();
+var soapServer = new Server();
+
+// Start soap Server
+soapServer.run();
+
+describe('Soap Client', function() {
+    it('should start without error', function(done) {
+        soapClient.createClient(function(err) {
+            if (err) { done(err); }
+            assert.isNotNull(soapClient.client, "Soap Client should not be null");
+            done();
+        });
+    });
 });
