@@ -11,6 +11,14 @@
  * file that was distributed with this source code.
  */
 
-var qbws = require('..');
+// Private
+var quickbooksjs = require('../../');
 
-qbws.run();
+// Public
+module.exports = Server;
+
+function Server() {}
+
+Server.prototype.run = function() {
+    quickbooksjs.run();
+};
