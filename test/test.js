@@ -16,7 +16,7 @@ var assert = chai.assert;
 var expect = chai.expect;
 
 var Client = require('./client/client');
-var Server = require('./server/server');
+var Server = require('../index');
 var soapClient = new Client();
 var soapServer = new Server();
 
