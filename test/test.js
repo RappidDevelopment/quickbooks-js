@@ -38,6 +38,30 @@ describe('Soap Client', function() {
             done();
         });
     });
+
+    it('should run client version method', function(done) {
+          soapClient.clientVersion(function(err, result) {
+            if (err) { done (err); }
+            console.log(result.clientVersionResult.string);
+            assert.deepEqual(result.clientVersionResult.string, {});
+            done();
+        });
+    });
+
+    it('should be below minimum client version', function(done) {
+        soapClient.clientVersionBelowMinimum(function(err, result) {
+            if (err) { done (err); }
+            console.log(result.clientVersionResult.string);
+            assert.deepEqual(result.clientVersionResult.string, 'E:You need to upgrade your QBWebConnector');
+            done();
+        });
+    });
+
+    it('should be below recommended client version', function(done) {
+        soapClient.clientVersionBelowRecommended(function(err, result) {
+            if (err) { done (err); }
+            console.log(result.clientVersionResult.string);
+            assert.deepEqual(result.clientVersionResult.string, 'W:It is recommended that you upgrade your QBWebConnector');
             done();
         });
     });
