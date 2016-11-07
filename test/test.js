@@ -65,4 +65,24 @@ describe('Soap Client', function() {
             done();
         });
     });
+
+    it('should authenticate correctly', function(done) {
+       soapClient.authenticateWithCorrectUsernameAndPassword(function(err, result) {
+           if (err) { done(err); }
+           assert.isArray(result.authenticateResult.string, 'Authenticate should return an array');
+           assert.isNotNull(result.authenticateResult.string[0], 'Authenticate should return an GUID for the session');
+           assert.notEqual(result.authenticateResult.string[1], 'nvu');
+           done();
+       });
+    });
+
+    it('should not authenticate correctly', function(done) {
+        soapClient.authenticateWithIncorrectUsernameAndPassword(function(err, result) {
+           if (err) { done(err); }
+            assert.isArray(result.authenticateResult.string, 'Authenticate should return an array');
+            assert.isNotNull(result.authenticateResult.string[0], 'Authenticate should return an GUID for the session');
+            assert.equal(result.authenticateResult.string[1], 'nvu');
+            done();
+        });
+    });
 });

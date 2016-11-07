@@ -94,5 +94,23 @@ Client.prototype.clientVersionBelowRecommended = function(callback) {
             console.log(result);
             return callback(null, result);
         }
+
+Client.prototype.authenticateWithCorrectUsernameAndPassword = function(callback) {
+    var args = {
+        strUserName: 'username',
+        strPassword: 'password'
+    };
+    this.client.authenticate(args, function(err, result) {
+        return callback(err, result);
+    });
+};
+
+Client.prototype.authenticateWithIncorrectUsernameAndPassword = function(callback) {
+    var args = {
+        strUserName: 'wrongusername',
+        strPassword: 'badpassword'
+    };
+    this.client.authenticate(args, function(err, result) {
+        return callback(err, result);
     });
 };
