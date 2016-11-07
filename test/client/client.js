@@ -48,52 +48,30 @@ Client.prototype.createClient = function(callback) {
  */
 Client.prototype.serverVersion = function(callback) {
     this.client.serverVersion({}, function(err, result) {
-        if (err) {
-            
-            return callback(err);
-        } else {
-
-            return callback(null, result);
-        }
-    })
+        return callback(err, result);
+    });
 };
 
 Client.prototype.clientVersion = function(callback) {
     var args = {strVersion: '2.1.0.30'};
     this.client.clientVersion(args, function(err, result) {
-        if (err) {
-            console.log(err);
-            return callback(err);
-        } else {
-            console.log(result);
-            return callback(null, result);
-        }
+        return callback(err, result);
     });
 };
 
 Client.prototype.clientVersionBelowMinimum = function(callback) {
     var args = {strVersion: '0.1.0'};
     this.client.clientVersion(args, function(err, result) {
-        if (err) {
-            console.log(err);
-            return callback(err);
-        } else {
-            console.log(result);
-            return callback(null, result);
-        }
+        return callback(err, result);
     });
 };
 
 Client.prototype.clientVersionBelowRecommended = function(callback) {
     var args = {strVersion: '2.0.0'};
     this.client.clientVersion(args, function(err, result) {
-        if (err) {
-            console.log(err);
-            return callback(err);
-        } else {
-            console.log(result);
-            return callback(null, result);
-        }
+        return callback(err, result);
+    });
+};
 
 Client.prototype.authenticateWithCorrectUsernameAndPassword = function(callback) {
     var args = {
