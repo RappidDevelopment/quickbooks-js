@@ -13,7 +13,6 @@
 
 var chai = require('chai');
 var assert = chai.assert;
-var expect = chai.expect;
 
 var Client = require('./client/client');
 var Server = require('../index');
