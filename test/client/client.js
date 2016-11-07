@@ -49,6 +49,14 @@ Client.prototype.createClient = function(callback) {
 Client.prototype.serverVersion = function(callback) {
     this.client.serverVersion({}, function(err, result) {
         if (err) {
+            
+            return callback(err);
+        } else {
+
+            return callback(null, result);
+        }
+    })
+};
             console.log(err);
             return callback(err);
         } else {
