@@ -11,4 +11,4 @@
  * file that was distributed with this source code.
  */
 
-module.exports = require('./lib/qbws');
+module.exports = require('./lib/server');
