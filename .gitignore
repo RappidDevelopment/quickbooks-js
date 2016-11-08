@@ -23,3 +23,6 @@ node_modules
 
 # WebStorm IDE
 .idea
+
+# Code Coverage Reports
+coverage

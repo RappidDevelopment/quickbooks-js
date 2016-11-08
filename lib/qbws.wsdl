@@ -35,7 +35,6 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
         </s:sequence>
       </s:complexType>
-
 <!-- added these two methods -->
     <s:element name="serverVersion">
         <s:complexType>
@@ -65,8 +64,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-
-
       <s:element name="sendRequestXML">
         <s:complexType>
           <s:sequence>
@@ -149,14 +146,12 @@
       </s:element>
     </s:schema>
   </wsdl:types>
-
   <wsdl:message name="authenticateSoapIn">
     <wsdl:part name="parameters" element="tns:authenticate" />
   </wsdl:message>
   <wsdl:message name="authenticateSoapOut">
     <wsdl:part name="parameters" element="tns:authenticateResponse" />
   </wsdl:message>
-
 <!-- added this part -->
   <wsdl:message name="serverVersionSoapIn">
     <wsdl:part name="parameters" element="tns:serverVersion" />
@@ -170,8 +165,6 @@
   <wsdl:message name="clientVersionSoapOut">
     <wsdl:part name="parameters" element="tns:clientVersionResponse" />
   </wsdl:message>
-
-
   <wsdl:message name="sendRequestXMLSoapIn">
     <wsdl:part name="parameters" element="tns:sendRequestXML" />
   </wsdl:message>
@@ -203,7 +196,6 @@
     <wsdl:part name="parameters" element="tns:closeConnectionResponse" />
   </wsdl:message>
   <wsdl:portType name="QBWebConnectorSvcSoap">
-    
     <!-- add this chunk -->
     <wsdl:operation name="serverVersion">
       <wsdl:input message="tns:serverVersionSoapIn" />
@@ -213,8 +205,6 @@
       <wsdl:input message="tns:clientVersionSoapIn" />
       <wsdl:output message="tns:clientVersionSoapOut" />
     </wsdl:operation>
-
-
     <wsdl:operation name="authenticate">
       <wsdl:input message="tns:authenticateSoapIn" />
       <wsdl:output message="tns:authenticateSoapOut" />
@@ -261,7 +251,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-
     <wsdl:operation name="authenticate">
       <soap:operation soapAction="http://developer.intuit.com/authenticate" style="document" />
       <wsdl:input>
