@@ -92,3 +92,10 @@ Client.prototype.authenticateWithIncorrectUsernameAndPassword = function(callbac
         return callback(err, result);
     });
 };
+
+Client.prototype.sendXMLRequest = function(callback) {
+    var args = {};
+    this.client.sendRequestXML(args, function(err, result) {
+        return callback(err, result);
+    });
+};
