@@ -1,34 +1,59 @@
-quickbooks-js
-======
 [![Build Status](https://travis-ci.org/RappidDevelopment/quickbooks-js.svg?branch=mm%2Fenhancement%2F%239%2Fasynchronous-support)](https://travis-ci.org/RappidDevelopment/quickbooks-js)
 [![Coverage Status](https://coveralls.io/repos/github/RappidDevelopment/quickbooks-js/badge.svg?branch=mm%2Fenhancement%2F%239%2Fasynchronous-support)](https://coveralls.io/github/RappidDevelopment/quickbooks-js?branch=mm%2Fenhancement%2F%239%2Fasynchronous-support)  
+quickbooks-js
+======
 A SOAP service implemented in Node.js that communicates with [QuickBook's Web Connector](https://developer.intuit.com/docs/0200_quickbooks_desktop/0400_tools/web_connector).
 
 ## Usage 
 The following steps _should_ get you up and running. 
 
+### prerequisites
 There are a few prerequisites you should have on hand:  
-*  Access to the desktop runnings Quickbooks and hosting the Company File.  
+*  Access to the desktop running Quickbooks and hosting the Company File.  
 *  The Quickbooks Company's administrator (user: `admin`) password   
 *  _Optional:_ A dedicated username and password for your web-service to interact with the Quickbooks Web Connector (**it is not recommended to use the admin username and password!**).  
-*  _Optional:_ The port on which the service should be available.
+*  _Optional:_ The port on which the service should be available. Defaults to `8080`.
 
-Set environment (`env`) variables for the following values:  
-* `QB_USERNAME`  
-* `QB_PASSWORD`     
-* `QB_COMPANY_FILE`  
-* `QB_SOAP_PORT`
-
-The easiest way to set `env` variables to an Express app is with the [dotenv package](https://www.npmjs.com/package/dotenv).
-
-Example (these are the default values if no `env`s are found):
+Set environment (`env`) variables for the following values (these are the defaults):  
 ```
 QB_USERNAME=username
 QB_PASSWORD=password  
 QB_COMPANY_FILE=C:\Users\Public\Documents\Intuit\QuickBooks\Sample Company Files\QuickBooks 2014\sample_wholesale-distribution business.qbw  
 QB_SOAP_PORT=8000  
 ```  
-In the Quickbooks Web Connector, select "Add an Application" and supply it with a `.qwc` file. There is an example [here](https://github.com/RappidDevelopment/quickbooks-js/blob/master/test/app.qwc).  
+
+Depending on your environemnt, you may need to set `QB_COMPNANY_FILE` in one of the following ways:
+```
+QB_COMPANY_FILE=C:\Users\Public\Documents\Intuit\QuickBooks\Sample Company Files\QuickBooks 2014\sample_wholesale-distribution business.qbw  
+QB_COMPANY_FILE='C:\Users\Public\Documents\Intuit\QuickBooks\Sample Company Files\QuickBooks 2014\sample_wholesale-distribution business.qbw'
+QB_COMPANY_FILE=C:\\Users\\Public\\Documents\\Intuit\\QuickBooks\\Sample Company Files\\QuickBooks 2014\\sample_wholesale-distribution business.qbw  
+QB_COMPANY_FILE='C:\\Users\\Public\\Documents\\Intuit\\QuickBooks\\Sample Company Files\\QuickBooks 2014\\sample_wholesale-distribution business.qbw  '
+```
+_For easy `env` variable management checkout the [dotenv package](https://www.npmjs.com/package/dotenv)_.
+
+### SOAP Server Setup
+To start the service from the command line simply run:  
+``` 
+node bin/run
+```
+
+To start the app from an Express install the package:  
+```
+npm install quickbooks-js --save  
+```
+Then start the service from your `app.js` with:  
+```
+var Server = require('quickbooks-js');  
+var soapServer = new Server();
+soapServer.run();
+```
+### QBWC Setup
+1. Login to your Quickbooks Company with your `admin` user.
+2. In the Quickbooks Web Connector, select "Add an Application" and supply it with a `.qwc` file. There is an example [here](https://github.com/RappidDevelopment/quickbooks-js/blob/master/test/app.qwc). 
+    * You may need to use `0.0.0.0` or a local IP like `10.0.0.156` to run locally
+    * `<OwnerID>` and `<FileID>`can be any random `guid`
+3. Quickbooks will prompt you to authorize your new web service.
+4. You may need to enter your password into QBWC once the app is added.
 
 To start the service from the command line simply run:  
 ``` 
