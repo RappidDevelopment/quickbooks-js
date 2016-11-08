@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/RappidDevelopment/quickbooks-js.svg?branch=mm%2Fenhancement%2F%239%2Fasynchronous-support)](https://travis-ci.org/RappidDevelopment/quickbooks-js)
+[![Build Status](https://travis-ci.org/RappidDevelopment/quickbooks-js.svg?branch=mm%2Fenhancement%2F%2312%2FqbXML-Handler)](https://travis-ci.org/RappidDevelopment/quickbooks-js)
 [![Coverage Status](https://coveralls.io/repos/github/RappidDevelopment/quickbooks-js/badge.svg?branch=mm%2Fenhancement%2F%239%2Fasynchronous-support)](https://coveralls.io/github/RappidDevelopment/quickbooks-js?branch=mm%2Fenhancement%2F%239%2Fasynchronous-support)  
 quickbooks-js
 ======
