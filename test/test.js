@@ -90,4 +90,21 @@ describe('Soap Client', function() {
            done();
        });
     });
+
+    it('should receive `100` from receiveResponseXML', function(done) {
+        soapClient.receiveResponseXML(function(err, result) {
+            if (err) { done(err); }
+            assert.equal(result.receiveResponseXMLResult.int, 100, 'Should receive 100%');
+            done();
+        });
+    });
+
+    it('should receive `-101` from receiveResponseXML', function(done) {
+        soapClient.receiveResponseXMLWithError(function(err, result) {
+            if (err) { done(err); }
+            assert.equal(result.receiveResponseXMLResult.int, -101, 'Should receive negative -101');
+            done();
+        });
+    });
+
 });

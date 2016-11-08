@@ -99,3 +99,18 @@ Client.prototype.sendXMLRequest = function(callback) {
         return callback(err, result);
     });
 };
+
+Client.prototype.receiveResponseXML = function(callback) {
+    var args = {hresult: ''};
+    this.client.receiveResponseXML(args, function(err, result) {
+        return callback(err, result);
+    });
+};
+
+Client.prototype.receiveResponseXMLWithError = function(callback) {
+    var args = {hresult: '0x80040408'};
+    this.client.receiveResponseXML(args, function(err, result) {
+        return callback(err, result);
+    });
+};
+
