@@ -7,7 +7,7 @@ A SOAP service implemented in Node.js that communicates with [QuickBook's Web Co
 ## Usage 
 The following steps _should_ get you up and running. 
 
-### prerequisites
+### Prerequisites
 There are a few prerequisites you should have on hand:  
 *  Access to the desktop running Quickbooks and hosting the Company File.  
 *  The Quickbooks Company's administrator (user: `admin`) password   
