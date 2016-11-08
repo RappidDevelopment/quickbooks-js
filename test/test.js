@@ -114,4 +114,12 @@ describe('Soap Client', function() {
             done();
         });
     });
+
+    it('should receive error message from getLastError', function(done) {
+        soapClient.getLastError(function(err, result) {
+            if (err) { done(err); }
+            assert.equal(result.getLastErrorResult.string, 'QuickBooks found an error when parsing the provided XML text stream.', 'Should receive error message');
+            done();
+        });
+    });
 });

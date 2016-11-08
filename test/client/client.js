@@ -120,3 +120,9 @@ Client.prototype.connectionError = function(callback) {
         return callback(err, result);
     });
 };
+Client.prototype.getLastError = function(callback) {
+    var args = {};
+    this.client.getLastError(args, function(err, result) {
+        return callback(err, result);
+    });
+};
