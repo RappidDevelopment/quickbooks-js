@@ -107,4 +107,11 @@ describe('Soap Client', function() {
         });
     });
 
+    it('should receive `done` from connectionError', function(done) {
+        soapClient.connectionError(function(err, result) {
+            if (err) { done(err); }
+            assert.equal(result.connectionErrorResult.string, 'DONE', 'Should receive DONE');
+            done();
+        });
+    });
 });

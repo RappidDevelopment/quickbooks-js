@@ -114,3 +114,9 @@ Client.prototype.receiveResponseXMLWithError = function(callback) {
     });
 };
 
+Client.prototype.connectionError = function(callback) {
+    var args = {hresult: '0x80040408', message: 'QuickBooks found an error when parsing the provided XML text stream.'};
+    this.client.connectionError(args, function(err, result) {
+        return callback(err, result);
+    });
+};
