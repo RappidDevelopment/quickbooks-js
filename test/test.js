@@ -122,4 +122,12 @@ describe('Soap Client', function() {
             done();
         });
     });
+
+    it('should receive `OK` from closeConnection', function(done) {
+        soapClient.closeConnection(function(err, result) {
+            if (err) { done(err); }
+            assert.equal(result.closeConnectionResult.string, 'OK', 'Should receive OK');
+            done();
+        });
+    });
 });
