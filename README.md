@@ -69,7 +69,11 @@ Then start the service from your `app.js` with:
 var quickbooks = require('quickbooks-js');  
 quickbooks.run();  
 ```
-
+## Tests 
+Unit tests are written in mocha.
+```
+npm test
+```
 ## Attribution  
 This project was forked from [`qbws`](https://github.com/johnballantyne/qbws/tree/975f2eb4b827de787a43ae3e69d025e1cb91523a) and originally written by [**@johnballantyne**](https://github.com/johnballantyne).  
 Modified by [**@MattMorgis**](https://github.com/MattMorgis) at [Rappid Development](http://rappiddevelopment.com).
