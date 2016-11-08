@@ -83,7 +83,7 @@ describe('Soap Client', function() {
         });
     });
 
-    it('should recieve an empty string from sendXMLRequest', function(done) {
+    it('should receive an empty string from sendXMLRequest', function(done) {
        soapClient.sendXMLRequest(function(err, result) {
            if (err) { done(err); }
            assert.deepEqual(result.sendRequestXMLResult.string, {}, 'String should be blank');
