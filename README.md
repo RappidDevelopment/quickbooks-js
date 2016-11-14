@@ -31,6 +31,47 @@ QB_COMPANY_FILE='C:\\Users\\Public\\Documents\\Intuit\\QuickBooks\\Sample Compan
 ```
 _For easy `env` variable management checkout the [dotenv package](https://www.npmjs.com/package/dotenv)_.
 
+### qbXML Handler
+You must addtionally create your own `qbXMLHandler` that will send the SOAP Server a queue of requests to pass to QBWC. It will addtionally handle the qbXML responses and any errors that may be returned. 
+
+There is an [example class here](https://github.com/RappidDevelopment/quickbooks-js/blob/master/bin/qbXMLHandler/index).
+
+```javascript
+// Public
+module.exports = {
+
+    /**
+     * Builds an array of qbXML commands
+     * to be run by QBWC.
+     *
+     * @param callback(err, requestArray)
+     */
+    fetchRequests: function(callback) {
+        return callback(null, []);
+    },
+
+    /**
+     * Called when a qbXML response
+     * is returned from QBWC.
+     *
+     * @param response - qbXML response
+     */
+    handleResponse: function(response) {
+        console.log(response);
+    },
+
+    /**
+     * Called when there is an error
+     * returned processing qbXML from QBWC.
+     *
+     * @param error - qbXML error response
+     */
+    didReceiveError: function(error) {
+        console.log(error);
+    }
+};
+```
+
 ### SOAP Server Setup
 To start the service from the command line simply run:  
 ``` 
@@ -44,7 +85,9 @@ npm install quickbooks-js --save
 Then start the service from your `app.js` with:  
 ```
 var Server = require('quickbooks-js');  
+var qbXMLHandler = require('./qbXMLHandler');
 var soapServer = new Server();
+quickbooksServer.setQBXMLHandler(qbXMLHandler);
 soapServer.run();
 ```
 ### QBWC Setup
