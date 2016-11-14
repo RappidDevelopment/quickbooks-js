@@ -2,4 +2,6 @@
 
 var QuickbooksServer = require('../index');
 var quickbooksServer = new QuickbooksServer();
+var qbXMLHandler = require('./qbXMLHandler');
+quickbooksServer.setQBXMLHandler(qbXMLHandler);
 quickbooksServer.run();
