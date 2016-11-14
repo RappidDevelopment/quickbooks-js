@@ -12,6 +12,7 @@
   },
   "scripts": {
     "test": "mocha",
+    "start": "./bin/run",
     "cover": "istanbul cover _mocha",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
