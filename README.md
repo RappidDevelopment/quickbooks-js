@@ -34,7 +34,7 @@ _For easy `env` variable management checkout the [dotenv package](https://www.np
 ### qbXML Handler
 You must addtionally create your own `qbXMLHandler` that will send the SOAP Server a queue of requests to pass to QBWC. It will addtionally handle the qbXML responses and any errors that may be returned. 
 
-There is an [example class here](https://github.com/RappidDevelopment/quickbooks-js/blob/master/bin/qbXMLHandler/index).
+There is an [example class here](https://github.com/RappidDevelopment/quickbooks-js/blob/master/bin/qbXMLHandler/index.js).
 
 ```javascript
 // Public
