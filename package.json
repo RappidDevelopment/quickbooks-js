@@ -1,6 +1,6 @@
 {
   "name": "uh-quickbooks-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "uh-sem-blee",
   "description": "A SOAP service implemented in Node.js that communicates with QuickBook's Web Connector",
   "repository": {
@@ -24,9 +24,9 @@
   "license": "MIT",
   "dependencies": {
     "data2xml": "^1.2.5",
-    "node-uuid": "1.4.3",
     "semver": "^5.3.0",
-    "soap": "0.9.1"
+    "soap": "0.9.1",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
