@@ -13,7 +13,6 @@
 
 // Private
 var soap = require('soap');
-var url = 'http://localhost:8000/wsdl?wsdl';
 
 // Public
 module.exports = Client;
@@ -23,8 +22,12 @@ module.exports = Client;
  * This acts as a mock quickbooks web connector.
  * @constructor
  */
-function Client() {
-    this.client = null;
+function Client(port) {
+  this.url = 'http://localhost:8000/wsdl?wsdl';
+  if(port) {
+    this.url = `http://localhost:${port}/wsdl?wsdl`;
+  }
+  this.client = null;
 }
 
 /**
@@ -33,7 +36,7 @@ function Client() {
  */
 Client.prototype.createClient = function(callback) {
     var that = this;
-    soap.createClient(url, function(err, client) {
+    soap.createClient(this.url, function(err, client) {
         if (err) return callback(err);
         that.client = client;
         return callback(null);
