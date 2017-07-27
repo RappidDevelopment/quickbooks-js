@@ -1,6 +1,6 @@
 {
   "name": "uh-quickbooks-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "uh-sem-blee",
   "description": "A SOAP service implemented in Node.js that communicates with QuickBook's Web Connector",
   "repository": {
