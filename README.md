@@ -87,7 +87,7 @@ Then start the service from your `app.js` with:
 var Server = require('quickbooks-js');  
 var qbXMLHandler = require('./qbXMLHandler');
 var soapServer = new Server();
-quickbooksServer.setQBXMLHandler(qbXMLHandler);
+soapServer.setQBXMLHandler(qbXMLHandler);
 soapServer.run();
 ```
 ### QBWC Setup
