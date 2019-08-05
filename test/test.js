@@ -16,8 +16,13 @@ var assert = chai.assert;
 
 var Client = require('./client/client');
 var Server = require('../index');
-var soapClient = new Client();
-var soapServer = new Server();
+var soapClient = new Client(8123);
+var soapServer = new Server({
+  username: 'jjosef',
+  password: '12345',
+  company_file: '/company_file',
+  soap_port: 8123
+});
 
 // Start soap Server
 soapServer.run();
