@@ -24,9 +24,9 @@
   "license": "MIT",
   "dependencies": {
     "data2xml": "^1.2.5",
-    "node-uuid": "^1.4.8",
     "semver": "^6.3.0",
-    "soap": "^0.29.0"
+    "soap": "^0.29.0",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "chai": "^4.2.0",
