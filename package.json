@@ -1,6 +1,6 @@
 {
   "name": "quickbooks-js",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "author": "Rappid Development LLC",
   "description": "A SOAP service implemented in Node.js that communicates with QuickBook's Web Connector",
   "repository": {
@@ -24,15 +24,15 @@
   "license": "MIT",
   "dependencies": {
     "data2xml": "^1.2.5",
-    "node-uuid": "1.4.3",
-    "semver": "^5.3.0",
-    "soap": "0.9.1"
+    "semver": "^6.3.0",
+    "soap": "^0.29.0",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "coveralls": "^2.11.14",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.6",
     "istanbul": "^0.4.5",
-    "mocha": "^3.1.2",
+    "mocha": "^6.2.0",
     "mocha-lcov-reporter": "^1.2.0"
   }
 }
