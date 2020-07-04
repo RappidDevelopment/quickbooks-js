@@ -42,7 +42,7 @@ describe('Soap Client', function() {
     it('should run client version method', function(done) {
           soapClient.clientVersion(function(err, result) {
             if (err) { done(err); }
-            assert.deepEqual(result.clientVersionResult.string, {});
+            assert.deepEqual(result.clientVersionResult.string, null);
             done();
         });
     });
@@ -86,7 +86,7 @@ describe('Soap Client', function() {
     it('should receive an empty string from sendXMLRequest', function(done) {
        soapClient.sendXMLRequest(function(err, result) {
            if (err) { done(err); }
-           assert.deepEqual(result.sendRequestXMLResult.string, {}, 'String should be blank');
+           assert.deepEqual(result.sendRequestXMLResult.string, null, 'String should be blank');
            done();
        });
     });
