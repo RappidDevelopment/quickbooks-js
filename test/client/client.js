@@ -53,7 +53,7 @@ Client.prototype.serverVersion = function(callback) {
 };
 
 Client.prototype.clientVersion = function(callback) {
-    var args = {strVersion: '2.1.0.30'};
+    const args = {strVersion: '2.1.2'};
     this.client.clientVersion(args, function(err, result) {
         return callback(err, result);
     });
