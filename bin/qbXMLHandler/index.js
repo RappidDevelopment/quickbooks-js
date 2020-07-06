@@ -12,6 +12,8 @@
  */
 
 var data2xml = require('data2xml');
+var xml2js = require('xml2js');
+var parser = new xml2js.Parser({trim: true});
 var convert = data2xml({
         xmlHeader: '<?xml version="1.0" encoding="utf-8"?>\n<?qbxml version="13.0"?>\n'
     });
@@ -36,7 +38,13 @@ module.exports = {
      * @param response - qbXML response
      */
     handleResponse: function(response) {
-        console.log(response);
+        parser.parseStringPromise(response).then(function (result) {
+            console.dir(JSON.stringify(result));
+            console.log('Done');
+          })
+          .catch(function (err) {
+            // Failed
+          });
     },
 
     /**
@@ -58,12 +66,40 @@ function buildRequests(callback) {
             QBXMLMsgsRq : {
                 _attr : { onError : 'stopOnError' },
                 ItemInventoryQueryRq : {
-                    MaxReturned: 1000,
+                    MaxReturned: 1,
+                },
+            },
+        }
+    );
+    var xml2 = convert(
+        'QBXML',
+        {
+            QBXMLMsgsRq : {
+                _attr : { onError : 'stopOnError' },
+                CustomerQueryRq : {
+                    MaxReturned: 1,
+                },
+            },
+        }
+    );
+    // Use it to pass in customer names && details. 
+    var xml3 = convert(
+        'QBXML',
+        {
+            QBXMLMsgsRq : {
+                _attr : { onError : 'stopOnError' },
+                CustomerAddRq : {
+                    CustomerAdd: { 
+                        Name: 'Mak Jonteds'
+                    }
                 },
             },
         }
     );
     requests.push(xml);
+    requests.push(xml3)
+    requests.push(xml2)
+
 
     return callback(null, requests);
 }

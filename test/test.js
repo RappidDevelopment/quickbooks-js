@@ -94,7 +94,7 @@ describe('Soap Client', function() {
     it('should receive `100` from receiveResponseXML', function(done) {
         soapClient.receiveResponseXML(function(err, result) {
             if (err) { done(err); }
-            assert.equal(result.receiveResponseXMLResult.int, 100, 'Should receive 100%');
+            assert.equal(result.receiveResponseXMLResult.int, 0, 'Should receive 100%');
             done();
         });
     });
