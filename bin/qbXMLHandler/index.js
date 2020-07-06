@@ -17,6 +17,8 @@ const convert = data2xml({
 module.exports = {
 
     companyFile: {},
+
+    port: 8080, 
     /**
      * Builds an array of qbXML commands
      * to be run by QBWC.
