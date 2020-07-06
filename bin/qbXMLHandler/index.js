@@ -1,33 +1,37 @@
-/*
- * This file is part of quickbooks-js
+/* 
+ * This is a sample QBMXL file. You should provide your own that: 
+ *   a.) Implements all the functions under module.exports
+ *   b.) Provide for a company file under module.exports. 
+ * Based off: 
  * https://github.com/RappidDevelopment/quickbooks-js
- *
- * Based on qbws: https://github.com/johnballantyne/qbws
- *
- * (c) 2015 johnballantyne
- * (c) 2016 Rappid Development LLC
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * https://github.com/johnballantyne/qbws
  */
 
-var data2xml = require('data2xml');
-var xml2js = require('xml2js');
-var parser = new xml2js.Parser({trim: true});
-var convert = data2xml({
+const data2xml = require('data2xml');
+const xml2js = require('xml2js');
+const parser = new xml2js.Parser({trim: true});
+const convert = data2xml({
         xmlHeader: '<?xml version="1.0" encoding="utf-8"?>\n<?qbxml version="13.0"?>\n'
     });
 
-// Public
 module.exports = {
 
+    companyFile: {},
     /**
      * Builds an array of qbXML commands
      * to be run by QBWC.
      *
      * @param callback(err, requestArray)
      */
-    fetchRequests: function(callback) {
+
+    authenticate: (username, password) => {
+        if(username=='test' && password=='test') { 
+            return Promise.resolve(true);
+        }
+        return Promise.resolve(false);
+    }, 
+
+    fetchRequests: (callback) => {
         buildRequests(callback);
     },
 
@@ -37,7 +41,7 @@ module.exports = {
      *
      * @param response - qbXML response
      */
-    handleResponse: function(response) {
+    handleResponse: (response) => {
         parser.parseStringPromise(response).then(function (result) {
             console.dir(JSON.stringify(result));
             console.log('Done');
@@ -53,10 +57,11 @@ module.exports = {
      *
      * @param error - qbXML error response
      */
-    didReceiveError: function(error) {
+    didReceiveError: (error) => {
         console.log(error);
     }
 };
+
 
 function buildRequests(callback) {
     var requests = new Array();
