@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/RappidDevelopment/quickbooks-js.svg?branch=mm%2Fenhancement%2F%2312%2FqbXML-Handler)](https://travis-ci.org/RappidDevelopment/quickbooks-js)
-[![Coverage Status](https://coveralls.io/repos/github/RappidDevelopment/quickbooks-js/badge.svg?branch=mm%2Fenhancement%2F%239%2Fasynchronous-support)](https://coveralls.io/github/RappidDevelopment/quickbooks-js?branch=mm%2Fenhancement%2F%239%2Fasynchronous-support)  
 quickbooks-js
 ======
 A SOAP service implemented in Node.js that communicates with [QuickBook's Web Connector](https://developer.intuit.com/docs/0200_quickbooks_desktop/0400_tools/web_connector).
@@ -12,33 +10,35 @@ There are a few prerequisites you should have on hand:
 *  Access to the desktop running Quickbooks and hosting the Company File.  
 *  The Quickbooks Company's administrator (user: `admin`) password   
 *  _Optional:_ A dedicated username and password for your web-service to interact with the Quickbooks Web Connector (**it is not recommended to use the admin username and password!**).  
-*  _Optional:_ The port on which the service should be available. Defaults to `8080`.
-
-Set environment (`env`) variables for the following values (these are the defaults):  
-```
-QB_USERNAME=username
-QB_PASSWORD=password  
-QB_COMPANY_FILE=C:\Users\Public\Documents\Intuit\QuickBooks\Sample Company Files\QuickBooks 2014\sample_wholesale-distribution business.qbw  
-QB_SOAP_PORT=8000  
-```  
-
-Depending on your environemnt, you may need to set `QB_COMPNANY_FILE` in one of the following ways:
-```
-QB_COMPANY_FILE=C:\Users\Public\Documents\Intuit\QuickBooks\Sample Company Files\QuickBooks 2014\sample_wholesale-distribution business.qbw  
-QB_COMPANY_FILE='C:\Users\Public\Documents\Intuit\QuickBooks\Sample Company Files\QuickBooks 2014\sample_wholesale-distribution business.qbw'
-QB_COMPANY_FILE=C:\\Users\\Public\\Documents\\Intuit\\QuickBooks\\Sample Company Files\\QuickBooks 2014\\sample_wholesale-distribution business.qbw  
-QB_COMPANY_FILE='C:\\Users\\Public\\Documents\\Intuit\\QuickBooks\\Sample Company Files\\QuickBooks 2014\\sample_wholesale-distribution business.qbw  '
-```
-_For easy `env` variable management checkout the [dotenv package](https://www.npmjs.com/package/dotenv)_.
 
 ### qbXML Handler
-You must addtionally create your own `qbXMLHandler` that will send the SOAP Server a queue of requests to pass to QBWC. It will addtionally handle the qbXML responses and any errors that may be returned. 
+You must provide your own `qbXMLHandler` file that will:
+1. Generate a queue of QBXML requests that will be passed to QBWC.
+2. Handle the QBXML responses and any errors that will be returned from QBWC. 
+3. Provide authentication function that receives username and password from QBWC.
+4. Provide company file. If empty, it will use the open company file in QB Desktop. 
+5. Port to connect to. Defaults to 8080
 
-There is an [example class here](https://github.com/RappidDevelopment/quickbooks-js/blob/master/bin/qbXMLHandler/index.js).
+There is an [example handler here](https://github.com/ziban/quickbooks-js/blob/master/bin/qbXMLHandler/index.js). Setup below shows how to use it.
 
 ```javascript
 // Public
 module.exports = {
+    companyFile: {}, 
+
+    port: 9093, 
+
+    /* Authenticates the QWBC client calls
+     * @param username && password 
+     * @return promise resolving to true(authenticated)
+     * or false(not authenticated)
+    */
+    authenticate: (username, password) => {
+        if(username=='test' && password=='test') { 
+            return Promise.resolve(true);
+        }
+        return Promise.resolve(false);
+    }, 
 
     /**
      * Builds an array of qbXML commands
@@ -75,48 +75,43 @@ module.exports = {
 ### SOAP Server Setup
 To start the service from the command line simply run:  
 ``` 
-node bin/run
+node bin/run or npm start 
 ```
 
-To start the app from an Express install the package:  
+To install the app: 
 ```
-npm install quickbooks-js --save  
+npm install git@github.com:ziban/quickbooks-js.git --save  
 ```
-Then start the service from your `app.js` with:  
+or 
 ```
-var Server = require('quickbooks-js');  
-var qbXMLHandler = require('./qbXMLHandler');
-var soapServer = new Server();
+npm install https://github.com/ziban/quickbooks-js.git --save  
+```
+To import into your node project: 
+```
+const Server = require('quickbooks-js');  
+const qbXMLHandler = require('./qbXMLHandler');
+const soapServer = new Server();
 soapServer.setQBXMLHandler(qbXMLHandler);
 soapServer.run();
 ```
 ### QBWC Setup
 1. Login to your Quickbooks Company with your `admin` user.
-2. In the Quickbooks Web Connector, select "Add an Application" and supply it with a `.qwc` file. There is an example [here](https://github.com/RappidDevelopment/quickbooks-js/blob/master/test/app.qwc). 
+2. Download Quickbooks Web Connector
+3. In the Quickbooks Web Connector, select "Add an Application" and supply it with a `.qwc` file. There is an example [here](https://github.com/ziban/quickbooks-js/blob/master/test/app.qwc). 
     * You may need to use `0.0.0.0` or a local IP like `10.0.0.156` to run locally
     * `<OwnerID>` and `<FileID>`can be any random `guid`
-3. Quickbooks will prompt you to authorize your new web service.
-4. You may need to enter your password into QBWC once the app is added.
+    * UserName should be the one you will use to authenticate against in the qbXMLHandler
+4. Quickbooks will prompt you to authorize your new web service.
+5. You may need to enter your password into QBWC once the app is added.
+    * This is the password you  will use to authenticate against in the qbXMLHandler
 
-To start the service from the command line simply run:  
-``` 
-node test/client.js
-```
-
-To start the app from an Express install the package:  
-```
-npm install quickbooks-js --save  
-```
-Then start the service from your `app.js` with:  
-```
-var quickbooks = require('quickbooks-js');  
-quickbooks.run();  
-```
 ## Tests 
-Unit tests are written in mocha.
+Unit tests are written in mocha.  You can run them using: 
 ```
 npm test
 ```
 ## Attribution  
-This project was forked from [`qbws`](https://github.com/johnballantyne/qbws/tree/975f2eb4b827de787a43ae3e69d025e1cb91523a) and originally written by [**@johnballantyne**](https://github.com/johnballantyne).  
-Modified by [**@MattMorgis**](https://github.com/MattMorgis) at [Rappid Development](http://rappiddevelopment.com).
+This project was forked from [`quickbooks-js`](git@github.com:RappidDevelopment/quickbooks-js.git) written  by [**@MattMorgis**](https://github.com/MattMorgis) at [Rappid Development](http://rappiddevelopment.com)
+ which was forked from [`qbws`](https://github.com/johnballantyne/qbws/tree/975f2eb4b827de787a43ae3e69d025e1cb91523a)  written by [**@johnballantyne**](https://github.com/johnballantyne).  
+
+Modified by  [**@ziban**](https://github.com/ziban)
