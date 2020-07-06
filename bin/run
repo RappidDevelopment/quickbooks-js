@@ -5,3 +5,6 @@ var quickbooksServer = new QuickbooksServer();
 var qbXMLHandler = require('./qbXMLHandler');
 quickbooksServer.setQBXMLHandler(qbXMLHandler);
 quickbooksServer.run();
+console.log(quickbooksServer.isRunning()); 
+// quickbooksServer.close();
+//console.log(quickbooksServer.isRunning()); 

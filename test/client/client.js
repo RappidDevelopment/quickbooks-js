@@ -13,7 +13,7 @@
 
 // Private
 var soap = require('soap');
-var url = 'http://localhost:8000/wsdl?wsdl';
+var url = 'http://localhost:8080/wsdl?wsdl';
 
 // Public
 module.exports = Client;

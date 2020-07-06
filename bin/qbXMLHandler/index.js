@@ -18,7 +18,7 @@ module.exports = {
 
     companyFile: {},
 
-    port: 8080, 
+    port: 8000, 
     /**
      * Builds an array of qbXML commands
      * to be run by QBWC.
