@@ -19,7 +19,16 @@ var Server = require('../index');
 var soapClient = new Client();
 var soapServer = new Server();
 
-// Start soap Server
+const sampleQBMXLHandler = { 
+    authenticate: (username, password) => { 
+        if(username=='test' && password=='test') { 
+            return Promise.resolve(true);
+        }
+        return Promise.resolve(false);
+    }
+}
+
+soapServer.setQBXMLHandler(sampleQBMXLHandler);
 soapServer.run();
 
 describe('Soap Client', function() {
