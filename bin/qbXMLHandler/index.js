@@ -13,8 +13,8 @@
 
 var data2xml = require('data2xml');
 var convert = data2xml({
-        xmlHeader: '<?xml version="1.0" encoding="utf-8"?>\n<?qbxml version="13.0"?>\n'
-    });
+    xmlHeader: '<?xml version="1.0" encoding="utf-8"?>\n<?qbxml version="13.0"?>\n'
+});
 
 // Public
 module.exports = {
@@ -51,18 +51,24 @@ module.exports = {
 };
 
 function buildRequests(callback) {
+
+    var jobnumber = 19437;
     var requests = new Array();
     var xml = convert(
-        'QBXML',
-        {
-            QBXMLMsgsRq : {
-                _attr : { onError : 'stopOnError' },
-                ItemInventoryQueryRq : {
+        'QBXML', {
+            QBXMLMsgsRq: {
+                _attr: { onError: 'stopOnError' },
+                SalesOrderQueryRq: {
                     MaxReturned: 1000,
+                    RefNumberFilter: {
+                        MatchCriterion: 'StartsWith',
+                        RefNumber: jobnumber
+                    },
                 },
             },
         }
     );
+    console.log(xml);
     requests.push(xml);
 
     return callback(null, requests);

@@ -12,6 +12,7 @@
  */
 
 // Private
+require('dotenv').config()
 var soap = require('soap');
 var url = 'http://localhost:8000/wsdl?wsdl';
 
@@ -53,21 +54,21 @@ Client.prototype.serverVersion = function(callback) {
 };
 
 Client.prototype.clientVersion = function(callback) {
-    var args = {strVersion: '2.1.0.30'};
+    var args = { strVersion: '2.1.0.30' };
     this.client.clientVersion(args, function(err, result) {
         return callback(err, result);
     });
 };
 
 Client.prototype.clientVersionBelowMinimum = function(callback) {
-    var args = {strVersion: '0.1.0'};
+    var args = { strVersion: '0.1.0' };
     this.client.clientVersion(args, function(err, result) {
         return callback(err, result);
     });
 };
 
 Client.prototype.clientVersionBelowRecommended = function(callback) {
-    var args = {strVersion: '2.0.0'};
+    var args = { strVersion: '2.0.0' };
     this.client.clientVersion(args, function(err, result) {
         return callback(err, result);
     });
@@ -79,6 +80,7 @@ Client.prototype.authenticateWithCorrectUsernameAndPassword = function(callback)
         strPassword: process.env.QB_PASSWORD || 'password'
     };
     this.client.authenticate(args, function(err, result) {
+        console.log(`Attempting to connect with user name ${username} and password of ${password}.`)
         return callback(err, result);
     });
 };
@@ -89,6 +91,7 @@ Client.prototype.authenticateWithIncorrectUsernameAndPassword = function(callbac
         strPassword: 'badpassword'
     };
     this.client.authenticate(args, function(err, result) {
+        console.log(result)
         return callback(err, result);
     });
 };
@@ -101,21 +104,21 @@ Client.prototype.sendXMLRequest = function(callback) {
 };
 
 Client.prototype.receiveResponseXML = function(callback) {
-    var args = {hresult: ''};
+    var args = { hresult: '' };
     this.client.receiveResponseXML(args, function(err, result) {
         return callback(err, result);
     });
 };
 
 Client.prototype.receiveResponseXMLWithError = function(callback) {
-    var args = {hresult: '0x80040408'};
+    var args = { hresult: '0x80040408' };
     this.client.receiveResponseXML(args, function(err, result) {
         return callback(err, result);
     });
 };
 
 Client.prototype.connectionError = function(callback) {
-    var args = {hresult: '0x80040408', message: 'QuickBooks found an error when parsing the provided XML text stream.'};
+    var args = { hresult: '0x80040408', message: 'QuickBooks found an error when parsing the provided XML text stream.' };
     this.client.connectionError(args, function(err, result) {
         return callback(err, result);
     });

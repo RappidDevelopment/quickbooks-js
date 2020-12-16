@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <QBWCXML>
-   <AppName>Example Development Service</AppName>
+   <AppName>QB PCT NodeJS App</AppName>
    <AppID></AppID>
    <AppURL>http://localhost:8000/wsdl</AppURL>
-   <AppDescription>Example Development Service</AppDescription>
+   <AppDescription>PCT APP SOAP SERVER</AppDescription>
    <AppSupport>http://locahost:8000/wsdl</AppSupport>
-   <UserName>rappid</UserName>
+   <UserName>Alex</UserName>
    <OwnerID>{57571caa-e934-4f14-b3bf-dfdbacdd273a}</OwnerID>
    <FileID>{dc25fda6-bce2-493b-9e04-a1560bde96e4}</FileID>
    <QBType>QBFS</QBType>
