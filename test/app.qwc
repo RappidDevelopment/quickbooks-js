@@ -4,7 +4,7 @@
    <AppID></AppID>
    <AppURL>http://localhost:8000/wsdl</AppURL>
    <AppDescription>Example Development Service</AppDescription>
-   <AppSupport>http://locahost:8000/wsdl</AppSupport>
+   <AppSupport>http://localhost:8000/wsdl</AppSupport>
    <UserName>rappid</UserName>
    <OwnerID>{57571caa-e934-4f14-b3bf-dfdbacdd273a}</OwnerID>
    <FileID>{dc25fda6-bce2-493b-9e04-a1560bde96e4}</FileID>
